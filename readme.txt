@@ -13,7 +13,26 @@
     使用aspectJ和rxjava结合
 
 --在项目中引入：
+引入：
+官方引入：
+Step 1: Add it in your root build.gradle at the end of repositories:
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://www.jitpack.io' }
+		}
+	}
+  	}
+Step 2. Add the dependency
+
+	dependencies {
+	       implementation 'com.github.hanlonglinandroidstudys:AopHelper:Tag'
+	}
+
+此外，还需添加：
     1.在项目root下的gradle中添加：
+    
          dependencies {
                 ....
                 classpath 'org.aspectj:aspectjtools:1.9.2'
@@ -21,6 +40,7 @@
             }
 
     2.在自己的moudle中的gradle中最外层添加：
+    
         import org.aspectj.tools.ajc.Main
         project.android.applicationVariants.all { variant ->
             //在编译后 增加行为
@@ -36,7 +56,6 @@
                 new Main().runMain(args, false);
             }
         }
-    3.在自己的moudle中的gradle中添加依赖：
 
 --使用例子：
          //主线程方法
