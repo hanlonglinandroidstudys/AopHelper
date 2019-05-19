@@ -9,10 +9,11 @@ import android.widget.Button;
 import hanlonglin.com.aop_tools.annotation.Async;
 import hanlonglin.com.aop_tools.annotation.Logger;
 import hanlonglin.com.aop_tools.annotation.Main;
+import hanlonglin.com.aop_tools.annotation.UserLogin;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btn1, btn2, btn3;
+    Button btn1, btn2, btn3, btn4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         btn1 = (Button) findViewById(R.id.btn_main);
         btn2 = (Button) findViewById(R.id.btn_async);
         btn3 = (Button) findViewById(R.id.btn_log);
+        btn4 = (Button) findViewById(R.id.btn_login);
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +44,13 @@ public class MainActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dolog("开始吧",125);
+                dolog("开始吧", 125);
+            }
+        });
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoMainPage();
             }
         });
     }
@@ -62,6 +70,15 @@ public class MainActivity extends AppCompatActivity {
     private String dolog(String msg, int count) {
         Log.e("TAG", "dolog()");
         return "结束";
+    }
+
+    /**
+     * 进入主页面
+     * 进入之前需要进行登录验证
+     */
+    @UserLogin(userName = "hanlonglin",password = "123")
+    private void gotoMainPage() {
+        Log.e("MainActivity","成功进入主页面！！！");
     }
 
 }
